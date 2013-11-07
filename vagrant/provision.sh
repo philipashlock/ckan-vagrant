@@ -20,6 +20,7 @@ sudo chmod -R a+rX /usr/local/ckan.lo
 cd /usr/local/ckan.lo/
 virtualenv --no-site-packages /usr/local/ckan.lo/pyenv
 source /usr/local/ckan.lo/pyenv/bin/activate
+#pip install -e 'git+https://github.com/okfn/ckan.git@release-datagov#egg=ckan'
 pip install -e 'git+https://github.com/okfn/ckan.git@release-v2.0#egg=ckan'
 pip install -r /usr/local/ckan.lo/pyenv/src/ckan/pip-requirements.txt
 pip install Pylons
@@ -41,6 +42,18 @@ sudo service jetty restart
 
 sudo mv /etc/solr/conf/schema.xml /etc/solr/conf/schema.xml.bak
 sudo ln -s /usr/local/ckan.lo/pyenv/src/ckan/ckan/config/solr/schema-2.0.xml /etc/solr/conf/schema.xml
+
+echo "add harvest extension"
+sudo apt-get install rabbitmq-server -y
+cd /usr/local/ckan.lo/
+source /usr/local/ckan.lo/pyenv/bin/activate
+
+#pip install -e git+https://github.com/okfn/ckanext-harvest.git@release-v2.0#egg=ckanext-harvest
+pip install -e git+https://github.com/okfn/ckanext-harvest.git@stable#egg=ckanext-harvest
+pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
+paster --plugin=ckanext-harvest harvester initdb --config=/usr/local/ckan.lo/pyenv/src/ckan/development.ini
+
+cd /usr/local/ckan.lo/pyenv/src/ckan
 
 echo "restarting jetty for the new configuration to kick-in"
 sudo service jetty restart
