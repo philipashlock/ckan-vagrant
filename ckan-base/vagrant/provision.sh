@@ -20,8 +20,8 @@ sudo chmod -R a+rX /usr/local/ckan.lo
 cd /usr/local/ckan.lo/
 virtualenv --no-site-packages /usr/local/ckan.lo/pyenv
 source /usr/local/ckan.lo/pyenv/bin/activate
-pip install -e 'git+https://github.com/okfn/ckan.git@release-datagov#egg=ckan'
-#pip install -e 'git+https://github.com/okfn/ckan.git@release-v2.0#egg=ckan'
+#pip install -e 'git+https://github.com/okfn/ckan.git@release-datagov#egg=ckan'
+pip install -e 'git+https://github.com/okfn/ckan.git@release-v2.0#egg=ckan'
 pip install -r /usr/local/ckan.lo/pyenv/src/ckan/pip-requirements.txt
 pip install Pylons
 deactivate
@@ -56,23 +56,30 @@ sudo apt-get install rabbitmq-server -y
 cd /usr/local/ckan.lo/
 source /usr/local/ckan.lo/pyenv/bin/activate
 
-#pip install -e git+https://github.com/okfn/ckanext-harvest.git@release-v2.0#egg=ckanext-harvest
-	#pip install -e git+https://github.com/okfn/ckanext-harvest.git@stable#egg=ckanext-harvest
-#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
-#paster --plugin=ckanext-harvest harvester initdb --config=/usr/local/ckan.lo/pyenv/src/ckan/development.ini
+pip install -e git+https://github.com/okfn/ckanext-harvest.git@stable#egg=ckanext-harvest
+pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
+paster --plugin=ckanext-harvest harvester initdb --config=/usr/local/ckan.lo/pyenv/src/ckan/development.ini
 
-pip install -e git+https://github.com/okfn/ckanext-geodatagov.git@dev#egg=ckanext-geodatagov
-pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov/pip-requirements.txt
-
-cd /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov 
+pip install -e git+https://github.com/Ontodia/socrata-harvester.git@stable#egg=socrata-harvester
+pip install -r /usr/local/ckan.lo/pyenv/src/socrata-harvester/pip-requirements.txt
+pip install ckanclient
+pip install appconfig
+cd /usr/local/ckan.lo/pyenv/src/socrata-harvester
 ../../bin/python setup.py develop
 
-pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
-#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-spatial/pip-requirements.txt
-
-#pip install -e git+https://github.com/FuhuXia/ckanext-datajson.git@dev#egg=ckanext-datajson
-#cd /usr/local/ckan.lo/pyenv/src/ckanext-datajson/
+#pip install -e git+https://github.com/okfn/ckanext-geodatagov.git@dev#egg=ckanext-geodatagov
+#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov/pip-requirements.txt
+#
+#cd /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov 
 #../../bin/python setup.py develop
+#
+#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
+
+				#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-spatial/pip-requirements.txt
+
+				#pip install -e git+https://github.com/FuhuXia/ckanext-datajson.git@dev#egg=ckanext-datajson
+				#cd /usr/local/ckan.lo/pyenv/src/ckanext-datajson/
+				#../../bin/python setup.py develop
 
 cd /usr/local/ckan.lo/pyenv/src/ckan
 
