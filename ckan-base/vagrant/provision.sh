@@ -64,6 +64,16 @@ source /usr/local/ckan.lo/pyenv/bin/activate
 pip install -e git+https://github.com/okfn/ckanext-geodatagov.git@dev#egg=ckanext-geodatagov
 pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov/pip-requirements.txt
 
+cd /usr/local/ckan.lo/pyenv/src/ckanext-geodatagov 
+../../bin/python setup.py develop
+
+pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-harvest/pip-requirements.txt
+#pip install -r /usr/local/ckan.lo/pyenv/src/ckanext-spatial/pip-requirements.txt
+
+#pip install -e git+https://github.com/FuhuXia/ckanext-datajson.git@dev#egg=ckanext-datajson
+#cd /usr/local/ckan.lo/pyenv/src/ckanext-datajson/
+#../../bin/python setup.py develop
+
 cd /usr/local/ckan.lo/pyenv/src/ckan
 
 echo "restarting jetty for the new configuration to kick-in"
